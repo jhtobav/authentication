@@ -2,5 +2,5 @@
 *.[oa]
 *~
 
-### Pycharm ###
-.idea
+### Flask ###
+__pycache__/
