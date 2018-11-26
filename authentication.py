@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 app = Flask(__name__)
 
 
@@ -7,6 +7,8 @@ def index():
     return 'Index Page'
 
 
-@app.route('/authentication')
+@app.route('/authentication/', methods=['GET'])
 def authentication():
-    return 'Authentication methods'
+    email = request.args.get('email', None)
+    password = request.args.get('password', None)
+    return 'User : {}-{}'.format(email, password)
