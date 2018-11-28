@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} Create User {% endblock %}
+{% block body %}
+<div>
+	<br/>
+	{{ utils.flashed_messages() }}
+	<br/>
+	<div>
+		<h1>Create your user</h1>
+		<br/>
+		{{ wtf.quick_form(form) }}
+	</div>
+</div>
+{% endblock %}

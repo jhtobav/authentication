@@ -8,7 +8,7 @@ from ..models import User
 
 @auth.route('/')
 def index():
-    return 'Index Page'
+    return 'Thank you for having us as your prefered authentication microservice, bye bye.'
 
 
 @auth.route('/authentication/', methods=['GET'])
@@ -18,9 +18,9 @@ def authentication():
         password = request.args.get('password', None)
         if not all((email, password)):
             return jsonify({'error': {'description': "email and password are required"}}), 400
-        exist = User.query.filter_by(email=email, password_hash=password).count()
+        exist = User.query.filter_by(email=email, password_hash=password).first()
         if exist:
             return jsonify({'data': 'login succesfull'}), 200
         else:
-            return jsonify({'error':{'description': 'not found'}}), 404
+            return jsonify({'error':{'description': 'User not found or wrong credentials'}}), 404
 
