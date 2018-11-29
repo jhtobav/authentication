@@ -17,10 +17,10 @@ def create_user():
     if form.validate_on_submit():
         user = User(
                 email=form.email.data, 
-                password_hash=form.password.data, 
                 name=form.name.data, 
                 last_name=form.last_name.data
                 )
+        user.set_password_hash(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('User creation successful')

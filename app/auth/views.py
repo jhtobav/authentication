@@ -18,9 +18,16 @@ def authentication():
         password = request.args.get('password', None)
         if not all((email, password)):
             return jsonify({'error': {'description': "email and password are required"}}), 400
-        exist = User.query.filter_by(email=email, password_hash=password).first()
-        if exist:
-            return jsonify({'data': 'login succesfull'}), 200
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if user.verify_password(password):
+                return jsonify({'data': 
+                            {'description': 'login successful',
+                            'email': user.email,
+                            'full_name': user.__str__()
+                            }}), 200
+            else:
+                return jsonify({'error':{'description': 'wrong credentials'}}), 404
         else:
-            return jsonify({'error':{'description': 'User not found or wrong credentials'}}), 404
+            return jsonify({'error':{'description': 'User not found'}}), 404
 
