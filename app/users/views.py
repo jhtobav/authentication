@@ -11,7 +11,7 @@ from ..models import User
 @users.route("/create_user", methods=['GET', 'POST'])
 def create_user():
     """
-    Creates a user on the database
+        Creates a user on the database
     """
     form = CreateUserForm()
     if form.validate_on_submit():

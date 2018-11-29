@@ -9,7 +9,7 @@ from ..models import User
 
 class CreateUserForm(FlaskForm):
     """
-    Form for creation of users
+        Form for creation of users
     """
     email = StringField('Email', validators=[DataRequired(), Email()])
     name = StringField('Name', validators=[DataRequired()])
