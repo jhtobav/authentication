@@ -1,10 +1,9 @@
 # app/auth/views.py
-
-
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 
 from . import auth
 from ..models import User
+
 
 @auth.route('/')
 def index():
@@ -13,6 +12,9 @@ def index():
 
 @auth.route('/authentication/', methods=['GET'])
 def authentication():
+    """
+        Validates the credentials of a user
+    """
     if request.method == 'GET':
         email = request.args.get('email', None)
         password = request.args.get('password', None)
@@ -22,10 +24,11 @@ def authentication():
         if user:
             if user.verify_password(password):
                 return jsonify({'data': 
-                            {'description': 'login successful',
-                            'email': user.email,
-                            'full_name': user.__str__()
-                            }}), 200
+                                {'description': 'login successful',
+                                    'email': user.email,
+                                    'full_name': user.__str__()
+                                }
+                                }), 200
             else:
                 return jsonify({'error':{'description': 'wrong credentials'}}), 404
         else:

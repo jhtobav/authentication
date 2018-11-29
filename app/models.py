@@ -6,9 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model):
     """
-    User representation on MySQL
+        User representation on MySQL
     """
-
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
