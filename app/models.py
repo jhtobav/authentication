@@ -23,4 +23,4 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __str__(self):
-        return "User: {} {}".format(self.name, self.last_name) 
+        return "{} {}".format(self.name, self.last_name) 
